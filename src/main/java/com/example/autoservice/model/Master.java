@@ -15,7 +15,7 @@ import lombok.Data;
 @Table(name = "masters")
 public class Master {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fio;
     @OneToMany

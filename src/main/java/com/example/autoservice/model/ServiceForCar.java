@@ -9,7 +9,7 @@ import lombok.Data;
 @Table(name = "services")
 public class ServiceForCar {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     private Order order;

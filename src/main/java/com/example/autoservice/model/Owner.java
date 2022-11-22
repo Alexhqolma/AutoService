@@ -14,7 +14,7 @@ import lombok.Data;
 @Table(name = "owners")
 public class Owner {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
     private List<Car> cars;
