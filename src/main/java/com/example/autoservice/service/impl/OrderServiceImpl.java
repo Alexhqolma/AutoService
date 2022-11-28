@@ -6,15 +6,14 @@ import com.example.autoservice.model.ServiceForCar;
 import com.example.autoservice.model.Status;
 import com.example.autoservice.repository.OrderRepository;
 import com.example.autoservice.service.OrderService;
-import org.springframework.stereotype.Service;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+    private static final double DIAGNOSTIC_PRICE = 500.0;
     private final OrderRepository orderRepository;
-    private final static double DIAGNOSTIC_PRICE = 500.0;
 
     public OrderServiceImpl(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
@@ -52,11 +51,12 @@ public class OrderServiceImpl implements OrderService {
         Order order = findById(orderId);
         List<ServiceForCar> services = findById(orderId).getServices();
         List<Product> products = findById(orderId).getProducts();
-        double countServices = services.size() == 1 ?
-                DIAGNOSTIC_PRICE :
+        double countServices = services.size() == 1
+                ? DIAGNOSTIC_PRICE :
                 services.stream().mapToDouble(ServiceForCar::getPrice).sum();
         double countProducts = products.stream().mapToDouble(Product::getPrice).sum();
-        order.setPrice((countServices - (services.size() / 100)) + (countProducts - (products.size() / 100)));
+        order.setPrice((countServices - (services.size() / 100))
+                + (countProducts - (products.size() / 100)));
         return order;
     }
 

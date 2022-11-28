@@ -8,9 +8,8 @@ import com.example.autoservice.model.ServiceForCar;
 import com.example.autoservice.service.CarService;
 import com.example.autoservice.service.ProductService;
 import com.example.autoservice.service.ServiceForCarService;
-import org.springframework.stereotype.Component;
-
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 @Component
 public class OrderMapper implements RequestDtoMapper<OrderRequestDto, Order>,

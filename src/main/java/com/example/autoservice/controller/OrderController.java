@@ -4,17 +4,17 @@ import com.example.autoservice.dto.mapper.OrderMapper;
 import com.example.autoservice.dto.mapper.ProductMapper;
 import com.example.autoservice.dto.request.OrderRequestDto;
 import com.example.autoservice.dto.request.ProductRequestDto;
-import com.example.autoservice.dto.request.ServiceForCarRequestDto;
 import com.example.autoservice.dto.response.OrderResponseDto;
-import com.example.autoservice.dto.response.ServiceForCarResponseDto;
 import com.example.autoservice.model.Order;
-import com.example.autoservice.model.Product;
-import com.example.autoservice.model.ServiceForCar;
 import com.example.autoservice.model.Status;
 import com.example.autoservice.service.OrderService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/orders")
@@ -23,7 +23,8 @@ public class OrderController {
     private final OrderMapper orderMapper;
     private final ProductMapper productMapper;
 
-    public OrderController(OrderService orderService, OrderMapper orderMapper, ProductMapper productMapper) {
+    public OrderController(OrderService orderService,
+                           OrderMapper orderMapper, ProductMapper productMapper) {
         this.orderService = orderService;
         this.orderMapper = orderMapper;
         this.productMapper = productMapper;
@@ -36,15 +37,18 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    public OrderResponseDto update(@PathVariable Long id, @RequestBody OrderRequestDto orderRequestDto) {
+    public OrderResponseDto update(@PathVariable Long id,
+                                   @RequestBody OrderRequestDto orderRequestDto) {
         Order order = orderMapper.mapToModel(orderRequestDto);
         order.setId(id);
         return orderMapper.mapToDto(orderService.save(order));
     }
 
     @PostMapping("/add-product/{id}")
-    public OrderResponseDto addProduct(@PathVariable Long id, @RequestBody ProductRequestDto productRequestDto) {
-        Order order = orderService.addProductToOrder(id, productMapper.mapToModel(productRequestDto));
+    public OrderResponseDto addProduct(@PathVariable Long id,
+                                       @RequestBody ProductRequestDto productRequestDto) {
+        Order order = orderService
+                .addProductToOrder(id, productMapper.mapToModel(productRequestDto));
         return orderMapper.mapToDto(order);
     }
 

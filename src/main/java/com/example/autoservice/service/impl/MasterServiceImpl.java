@@ -1,17 +1,17 @@
 package com.example.autoservice.service.impl;
 
-import java.util.List;
 import com.example.autoservice.model.Master;
 import com.example.autoservice.model.Order;
 import com.example.autoservice.model.Status;
 import com.example.autoservice.repository.MasterRepository;
 import com.example.autoservice.service.MasterService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MasterServiceImpl implements MasterService {
+    private static final double SALARY_PERCENT = 0.4;
     private final MasterRepository masterRepository;
-    private final static double SALARY_PERCENT = 0.4;
 
     public MasterServiceImpl(MasterRepository masterRepository) {
         this.masterRepository = masterRepository;

@@ -7,9 +7,8 @@ import com.example.autoservice.model.Order;
 import com.example.autoservice.model.Owner;
 import com.example.autoservice.service.CarService;
 import com.example.autoservice.service.OrderService;
-import org.springframework.stereotype.Component;
-
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 @Component
 public class OwnerMapper implements RequestDtoMapper<OwnerRequestDto, Owner>,

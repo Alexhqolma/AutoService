@@ -7,10 +7,15 @@ import com.example.autoservice.dto.response.MasterResponseDto;
 import com.example.autoservice.dto.response.OrderResponseDto;
 import com.example.autoservice.model.Master;
 import com.example.autoservice.service.MasterService;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/masters")
@@ -19,7 +24,8 @@ public class MasterController {
     private final MasterMapper masterMapper;
     private final OrderMapper orderMapper;
 
-    public MasterController(MasterService masterService, MasterMapper masterMapper, OrderMapper orderMapper) {
+    public MasterController(MasterService masterService,
+                            MasterMapper masterMapper, OrderMapper orderMapper) {
         this.masterService = masterService;
         this.masterMapper = masterMapper;
         this.orderMapper = orderMapper;
@@ -32,7 +38,8 @@ public class MasterController {
     }
 
     @PutMapping("/{id}")
-    public MasterResponseDto update(@PathVariable Long id, @RequestBody MasterRequestDto masterRequestDto) {
+    public MasterResponseDto update(@PathVariable Long id,
+                                    @RequestBody MasterRequestDto masterRequestDto) {
         Master master = masterMapper.mapToModel(masterRequestDto);
         master.setId(id);
         return masterMapper.mapToDto(masterService.save(master));
