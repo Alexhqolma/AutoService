@@ -20,7 +20,7 @@ public class MasterMapper implements RequestDtoMapper<MasterRequestDto, Master>,
     @Override
     public Master mapToModel(MasterRequestDto dto) {
         Master master = new Master();
-        master.setFio(dto.getFio());
+        master.setFullName(dto.getfullName());
         master.setReadyOrders(dto.getReadyOrdersId()
                 .stream()
                 .map(orderService::findById)
@@ -32,7 +32,7 @@ public class MasterMapper implements RequestDtoMapper<MasterRequestDto, Master>,
     public MasterResponseDto mapToDto(Master master) {
         MasterResponseDto masterResponseDto = new MasterResponseDto();
         masterResponseDto.setId(master.getId());
-        masterResponseDto.setFio(master.getFio());
+        masterResponseDto.setFullName(master.getFullName());
         masterResponseDto.setReadyOrdersId(master.getReadyOrders()
                 .stream()
                 .map(Order::getId)

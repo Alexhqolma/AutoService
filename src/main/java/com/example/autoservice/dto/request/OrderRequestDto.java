@@ -1,6 +1,8 @@
 package com.example.autoservice.dto.request;
 
 import com.example.autoservice.model.Status;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class OrderRequestDto {
     private List<Long> carServicesId;
     private List<Long> productsId;
     private Status status;
-    private double price;
+    private BigDecimal price;
     private LocalDate finishDate;
 
     public Long getCarId() {
@@ -34,7 +36,7 @@ public class OrderRequestDto {
         return status;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

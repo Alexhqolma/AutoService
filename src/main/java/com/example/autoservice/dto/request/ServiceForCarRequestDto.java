@@ -2,10 +2,12 @@ package com.example.autoservice.dto.request;
 
 import com.example.autoservice.model.Status;
 
+import java.math.BigDecimal;
+
 public class ServiceForCarRequestDto {
     private Long orderId;
     private Long masterId;
-    private double price;
+    private BigDecimal price;
     private Status status;
 
     public Long getOrderId() {
@@ -16,7 +18,7 @@ public class ServiceForCarRequestDto {
         return masterId;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class MasterResponseDto {
     private Long id;
-    private String fio;
+    private String fullName;
     private List<Long> readyOrdersId;
 }

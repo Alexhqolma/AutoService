@@ -7,11 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.Data;
+import java.math.BigDecimal;
 
-@Data
 @Entity
 @Table(name = "services")
 public class ServiceForCar {
@@ -20,9 +18,49 @@ public class ServiceForCar {
     private Long id;
     @ManyToOne
     private Order order;
-    @OneToOne
+    @ManyToOne
     private Master master;
-    private double price;
+    private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Master getMaster() {
+        return master;
+    }
+
+    public void setMaster(Master master) {
+        this.master = master;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

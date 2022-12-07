@@ -37,7 +37,7 @@ public class MasterServiceImpl implements MasterService {
         double result = 0.0;
         for (int i = 0; i < orders.size(); i++) {
             if (orders.get(i).getStatus() != Status.PAID) {
-                result += orders.get(i).getPrice();
+                result += result + orders.get(i).getPrice().doubleValue();
                 orders.get(i).setStatus(Status.PAID);
             }
         }

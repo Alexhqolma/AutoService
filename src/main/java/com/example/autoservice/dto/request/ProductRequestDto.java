@@ -1,14 +1,16 @@
 package com.example.autoservice.dto.request;
 
+import java.math.BigDecimal;
+
 public class ProductRequestDto {
     private String name;
-    private double price;
+    private BigDecimal price;
 
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 }
