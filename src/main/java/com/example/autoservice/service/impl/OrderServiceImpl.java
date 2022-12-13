@@ -50,8 +50,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order getOrderPrice(Long orderId) {
         Order order = findById(orderId);
-        List<ServiceForCar> services = findById(orderId).getServices();
-        List<Product> products = findById(orderId).getProducts();
+        List<ServiceForCar> services = orderRepository.findAllServicesById(orderId);
+        List<Product> products = orderRepository.findAllProductsById(orderId);
         double countServices = services.size() == 1
                 ? DIAGNOSTIC_PRICE :
                 services.stream()
@@ -62,6 +62,7 @@ public class OrderServiceImpl implements OrderService {
                 .mapToDouble(BigDecimal::doubleValue).sum();
         order.setPrice(BigDecimal.valueOf((countServices - (services.size() / 100))
                 + (countProducts - (products.size() / 100))));
+        orderRepository.save(order);
         return order;
     }
 

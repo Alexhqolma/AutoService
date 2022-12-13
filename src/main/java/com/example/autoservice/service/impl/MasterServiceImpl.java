@@ -32,8 +32,7 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public double getSalary(Long masterId) {
-        Master master = findById(masterId);
-        List<Order> orders = master.getReadyOrders();
+        List<Order> orders = masterRepository.findReadyOrder(masterId);
         double result = 0.0;
         for (int i = 0; i < orders.size(); i++) {
             if (orders.get(i).getStatus() != Status.PAID) {

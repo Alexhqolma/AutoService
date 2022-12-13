@@ -44,7 +44,7 @@ public class OrderController {
         return orderMapper.mapToDto(orderService.save(order));
     }
 
-    @PostMapping("/add-product/{id}")
+    @PostMapping("/product/{id}")
     public OrderResponseDto addProduct(@PathVariable Long id,
                                        @RequestBody ProductRequestDto productRequestDto) {
         Order order = orderService
@@ -52,7 +52,7 @@ public class OrderController {
         return orderMapper.mapToDto(order);
     }
 
-    @PutMapping("/update-status/{id}")
+    @PutMapping("/status/{id}")
     public OrderResponseDto changeStatus(@PathVariable Long id,
                                                  @RequestBody OrderRequestDto orderRequestDto,
                                                  @RequestBody Status status) {
@@ -62,7 +62,7 @@ public class OrderController {
         return orderMapper.mapToDto(orderService.save(order));
     }
 
-    @GetMapping("/price")
+    @GetMapping("/price/{id}")
     public OrderResponseDto getPrice(@PathVariable Long id) {
         return orderMapper.mapToDto(orderService.getOrderPrice(id));
     }
